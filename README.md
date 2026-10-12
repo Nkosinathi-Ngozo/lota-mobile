@@ -20,6 +20,7 @@ app uses.
 ## Getting started
 
 ```bash
+cd src                 # the Expo project lives in mobile/src (docker-compose.yml stays here)
 npm install
 npm run start        # Expo dev server (scan the QR with Expo Go, or press i/a)
 npm run android       # open on a connected Android device/emulator
@@ -54,14 +55,14 @@ Go for the full experience (camera, GPS, offline storage).
 ## Project layout
 
 ```
-app/                    expo-router routes
+src/app/                expo-router routes (project root is mobile/src)
   (auth)/login.tsx       sign-in screen
   (app)/verification.tsx due-assets list (home tab)
   (app)/scan.tsx          camera barcode/QR scanner
   (app)/asset/[uid].tsx   asset detail + offline capture form
   (app)/queue.tsx         offline sync queue
   (app)/profile.tsx       session info + sign out
-src/
+src/src/
   theme/                 design tokens mirrored from the web app's Tailwind theme
   lib/api.ts              API client (same contract as f/lota/src/lib/api.ts)
   lib/verificationStore.tsx  offline-first capture queue + sync

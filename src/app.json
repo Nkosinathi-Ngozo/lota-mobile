@@ -1,0 +1,107 @@
+{
+  "expo": {
+    "name": "LOTA",
+    "slug": "lota-mobile",
+    "scheme": "lota",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#020618"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "co.za.ice4po.lota",
+      "infoPlist": {
+        "NSCameraUsageDescription": "LOTA uses the camera to scan asset barcodes and QR codes during verification.",
+        "NSLocationWhenInUseUsageDescription": "LOTA captures GPS coordinates to confirm the location of a verified asset.",
+        "NSPhotoLibraryUsageDescription": "LOTA lets you attach a photo as evidence when verifying an asset."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "co.za.ice4po.lota",
+      "permissions": [
+        "android.permission.CAMERA",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.POST_NOTIFICATIONS"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 220,
+          "resizeMode": "contain",
+          "backgroundColor": "#020618"
+        }
+      ],
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "LOTA uses the camera to scan asset barcodes and QR codes during verification."
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "LOTA captures GPS coordinates to confirm the location of a verified asset."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "LOTA lets you attach a photo as evidence when verifying an asset.",
+          "cameraPermission": "LOTA uses the camera to capture photo evidence during verification."
+        }
+      ],
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "LOTA uses Face ID to unlock your account without retyping your password."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "color": "#1976D2",
+          "defaultChannel": "default"
+        }
+      ],
+      "expo-font",
+      "expo-image",
+      "expo-secure-store",
+      "expo-status-bar"
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "49d1a283-b710-43da-b1e2-e27abf6195f3"
+      }
+    }
+  }
+}
