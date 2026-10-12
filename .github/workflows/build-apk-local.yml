@@ -178,7 +178,7 @@ jobs:
         # always(): also fires when an earlier step failed or was cancelled, so
         # you hear about a broken build, not just a good one. nodemailer is
         # installed beside a copy of the script so this works even if the
-        # failure was `npm ci` itself.
+        # failure was `npm ci` itself. 
         if: ${{ always() && vars.MAIL_TO != '' }}
         run: |
           mkdir -p "$RUNNER_TEMP/notify"
