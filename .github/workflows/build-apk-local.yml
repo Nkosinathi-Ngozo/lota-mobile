@@ -101,6 +101,28 @@ jobs:
       - name: Generate native Android project
         run: npx expo prebuild --platform android --no-install
 
+      - name: Install Android NDK (with retries)
+        run: |
+          # Gradle would otherwise download the NDK itself mid-build, and a
+          # truncated download ("Archive is not a ZIP archive") fails the whole
+          # build with no retry. Installing it here first retries and verifies.
+          ndk="$(grep -E '^ndkVersion' node_modules/react-native/gradle/libs.versions.toml | grep -oE '[0-9]+(\.[0-9]+)+' | head -1)"
+          ndk="${ndk:-27.1.12297006}"
+          sdkmanager="$(command -v sdkmanager || echo "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager")"
+          echo "Installing NDK $ndk"
+          yes | "$sdkmanager" --licenses > /dev/null 2>&1 || true
+          for attempt in 1 2 3 4; do
+            rm -rf "$ANDROID_HOME/ndk/$ndk"
+            if "$sdkmanager" --install "ndk;$ndk" && [ -f "$ANDROID_HOME/ndk/$ndk/source.properties" ]; then
+              echo "NDK $ndk installed"
+              exit 0
+            fi
+            echo "::warning::NDK install attempt $attempt failed; retrying"
+            sleep $((attempt * 15))
+          done
+          echo "::error::Could not install NDK $ndk after 4 attempts"
+          exit 1
+
       - name: Decode release keystore 
         run: |
           # Strip whitespace/newlines a copy-paste may have added, and restore
