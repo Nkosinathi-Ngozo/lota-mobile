@@ -29,8 +29,8 @@ jobs:
         working-directory: src
     env:
       # Baked into the app at bundle time (read via process.env in
-      # src/src/lib/api.ts). Set it as a repository *variable*.
-      EXPO_PUBLIC_API_BASE_URL: ${{ vars.EXPO_PUBLIC_API_BASE_URL }}
+      # src/src/lib/api.ts). Set it as a repository *secret*.
+      EXPO_PUBLIC_API_BASE_URL: ${{ secrets.EXPO_PUBLIC_API_BASE_URL }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v5

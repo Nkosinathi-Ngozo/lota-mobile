@@ -43,7 +43,7 @@ base64 -i lota-release.jks | tr -d '\n'   # macOS
 | Secret | `ANDROID_KEYSTORE_PASSWORD` | keystore password |
 | Secret | `ANDROID_KEY_ALIAS` | `lota` (your alias) |
 | Secret | `ANDROID_KEY_PASSWORD` | key password (same as the keystore one if you let keytool reuse it) |
-| Variable | `EXPO_PUBLIC_API_BASE_URL` | e.g. `https://api.example.com/api/v1` (baked into the app) |
+| Secret | `EXPO_PUBLIC_API_BASE_URL` | e.g. `https://api.example.com/api/v1` (baked into the app) |
 
 The build fails early with a clear message if a secret is missing.
 
